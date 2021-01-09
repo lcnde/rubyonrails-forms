@@ -1,3 +1,8 @@
+<%# pay close attention at the url used, because users_path (with %>
+<%# the S) refers to a POST /users request. While user_path refers%>
+<%# to a PATCH /users/:id request (the one that you need to update %>
+<%# users). To see the routes yourself type in the console %>
+<%# $rails routes %>
 <%= form_for(@user, url: user_path) do |f| %>
   <%= f.label "username" %>
   <%= f.text_field :username %><br><br>
