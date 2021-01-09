@@ -31,6 +31,9 @@
 <% end %>
 <% end %>
 
+<%# with form_for you can use user_params from the controller %>
+<%# becauase in the <input> it generates the name like user[email] %>
+<%# so the user_params can use it%>
 <%= form_for(@user, url: users_path) do |f| %>
   <%= f.label "username" %>
   <%= f.text_field :username %><br><br>
