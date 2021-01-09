@@ -1,4 +1,5 @@
 <br><br>
+<% if false %>
 <form action="<%= users_path %>" method="post" accept-charset="UTF-8">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="username">Username:</label>
@@ -9,3 +10,21 @@
   <input type="text" id="password" name="user[password]"><br><br>
   <input type="submit" value="Submit">
 </form>
+<% end %>
+
+<%# with this form you can't use user_params because the html it %>
+<%# generates has the name of the symbol you pass inside the %>
+<%# text_field_tag. Remember that the name of the input field will %>
+<%# be, in the hash that will get sent, the key and the input will %>
+<%# be the value. This said, to use user_params you would need to %>
+<%# have the input name like user[email], and with the _tag  helper%>
+<%# you can't do that since the name is generate automatically. %>
+<%= form_tag(users_path, method: "post") do %>
+  <%= label_tag(:username, "Username:") %>
+  <%= text_field_tag(:username) %><br><br>
+  <%= label_tag(:email, "Email:") %>
+  <%= text_field_tag(:email) %><br><br>
+  <%= label_tag(:password, "Password:") %>
+  <%= text_field_tag(:password) %><br><br>
+  <%= submit_tag("Create") %>
+<% end %>
