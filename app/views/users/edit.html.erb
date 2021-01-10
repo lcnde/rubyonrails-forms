@@ -3,12 +3,20 @@
 <%# to a PATCH /users/:id request (the one that you need to update %>
 <%# users). To see the routes yourself type in the console %>
 <%# $rails routes %>
+<br><br>
 <%= form_for(@user, url: user_path) do |f| %>
-  <%= f.label "username" %>
+  <%= f.label "username" %><br>
   <%= f.text_field :username %><br><br>
-  <%= f.label "email" %>
-  <%= f.text_field :email %><br><br>
-  <%= f.label "password" %>
-  <%= f.text_field :password %><br><br>
+  <%= f.label "email" %><br>
+  <%= f.email_field :email %><br><br>
+  <%= f.label "password" %><br>
+  <%= f.password_field :password %><br><br>
   <%= f.submit "Update" %>
+  <% if @user.errors.any? %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li> <%= msg %> </li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
